@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Forum - OpenTeens</title>
+		<link rel="stylesheet" href="style/var.css" />
+		<link rel="stylesheet" href="style/forum.css" />
+		<script src="scripts/sel.js"></script>
+		<script src="scripts/render.js"></script>
+	</head>
+	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+		<symbol id="plus" viewBox="0 0 448 512">
+			<path
+				d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+			</path>
+		</symbol>
+	</svg>
+	<body>
+		<div class="nav-wrapper">
+			<div id="nav" class="fixed"></div>
+		</div>
+
+		<div id="main-outlet-wrapper">
+			<div class="sidebar-wrapper fixed">
+				<div id="sidebar">
+					<div id="categories">
+						<h3>Categories</h3>
+						<ul></ul>
+					</div>
+				</div>
+			</div>
+
+			<div id="content"></div>
+		</div>
+	</body>
+</html>
+
+
+<script>
+	renderdata_catelist([
+		{
+			title: 'News',
+			icon: 'linear-gradient(90deg, #0088CC 50%, #0088CC 50%)'
+		},
+		{
+			title: 'TeensCamp',
+			icon: 'linear-gradient(90deg, #cc7134 50%, #cc7134 50%)'
+		},
+	])
+	renderdata_topiclist([
+		{
+			title: "TeensCamp #1",
+			time: "3天前"
+		},
+		{
+			title: "TeensCamp #2",
+			time: "100天前"
+		},
+	])
+	renderdata_posts([
+		{
+			type: "text",
+			data: "Hello, world"
+		},
+		{
+			type: "text",
+			data: "Hello, world, Bernie!"
+		}
+	])
+</script>
