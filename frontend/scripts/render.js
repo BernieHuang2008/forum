@@ -77,14 +77,15 @@ function renderdata_topiclist(topics) {
 
 function renderdata_posts(posts) {
 	var dom_posts = document.createElement('div');
+	dom_posts.classList.add('posts-container');
 
 	posts.forEach(post => {
 		var data = post.data;
-		var dom = undefined;
+		var dom_content = undefined;
 
 		switch (post.type) {
 			case "text":
-				dom = _renderwidget_text(data);
+				dom_content = _renderwidget_text(data);
 				break;
 			default:
 				return; // continue
@@ -92,7 +93,14 @@ function renderdata_posts(posts) {
 
 		var dom_post = document.createElement('div');
 		dom_post.classList.add('post');
-		dom_post.appendChild(dom);
+		var dom_poster = document.createElement('div');
+		dom_poster.classList.add('post-poster');
+		dom_poster.innerHTML = "<img class='poster photo'><span class='poster name'>";
+		dom_poster.querySelector('.poster.photo').src = post.poster_photo;
+		dom_poster.querySelector('.poster.name').innerText = post.poster;
+		
+		dom_post.appendChild(dom_poster);
+		dom_post.appendChild(dom_content);
 		dom_posts.appendChild(dom_post);
 	})
 

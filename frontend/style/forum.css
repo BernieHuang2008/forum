@@ -210,3 +210,32 @@ svg.icon {
 #topics tr>td:nth-child(2) {
 	width: 60px;
 }
+
+.posts-container {
+	max-width: 800px;
+}
+
+div.post {
+	padding: 12px 30px;
+	background: #323232;
+	margin: 18px 0;
+}
+
+.post-poster {
+	display: flex;
+	align-items: center;
+	user-select: none;
+}
+
+.poster.photo {
+	height: 3rem;
+	width: 3rem;
+	border-radius: 50%;
+}
+
+.poster.name {
+	margin-left: 1rem;
+	font-size: var(--font-0);
+	color: var(--primary-high-or-secondary-low);
+	font-weight: bold;
+}
