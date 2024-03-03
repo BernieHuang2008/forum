@@ -188,6 +188,7 @@ svg.icon {
 #content {
 	grid-area: content;
 	padding-top: 1.5em;
+	max-width: 800px;
 }
 
 #topics tr>th:first-of-type {
