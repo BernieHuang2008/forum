@@ -1,0 +1,107 @@
+#editor {
+	--editor-bg: #323232;
+}
+
+#editor {
+	background: var(--editor-bg);
+	padding: 12px 30px;
+	border-radius: 10px;
+}
+
+#editor>h1 {
+	float: left;
+	font-size: 1.5rem;
+}
+
+#editor-control {
+	float: right;
+}
+
+#editor-container {
+	display: flex;
+	flex-direction: row;
+	clear: both;
+	
+	overflow: hidden;
+	scroll-behavior: smooth;
+	
+	transition: height .4s;
+}
+
+#editor-container.hideAll-x {
+	height: max-content !important;
+}
+
+#editor-container.hideAll>.editor {
+	height: 0;
+}
+
+.editor.focus {
+	height: max-content !important;
+}
+
+.editor {
+	width: 100%;
+	height: max-content;
+	flex-shrink: 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.editor-element[name] {
+	display: block;
+
+	color: white;
+	background: transparent;
+
+	margin: 10px;
+	padding: 16.5px 14px;
+
+	box-sizing: border-box;
+	outline: 0;
+	border: solid 1px #4a4e52;
+	border-radius: 4px;
+
+	font-size: 1rem;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.editor-element[name]:hover {
+	border-color: #fff;
+}
+
+.editor-element[name]:focus {
+	border-color: #90caf9;
+}
+
+label.editor-element {
+	margin: 10px;
+	float: left;
+	user-select: none;
+}
+
+input.editor-element {
+	line-height: 1.4375em;
+	letter-spacing: 0.00938em;
+}
+
+textarea.editor-element {
+	resize: vertical;
+}
+
+/* Advanced css */
+
+label.editor-element:has(+ input.editor-element) {
+	background-color: var(--editor-bg);
+
+	margin: 0;
+	margin-left: 10px;
+	padding: 5px;
+
+	position: relative;
+	top: calc(15px + 0.5rem);
+	left: 10px;
+
+	width: max-content;
+}

@@ -105,6 +105,8 @@ function renderdata_posts(posts) {
 	})
 
 	refresh_content(dom_posts);
+	
+	editor.render($('#content'));
 }
 
 function _renderwidget_text(data) {
