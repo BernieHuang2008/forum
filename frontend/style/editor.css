@@ -28,12 +28,13 @@
 	transition: height .4s;
 }
 
-#editor-container.hideAll-x {
+#editor-container.maxcontent {
 	height: max-content !important;
 }
 
 #editor-container.hideAll>.editor {
 	height: 0;
+	overflow: hidden;
 }
 
 .editor.focus {

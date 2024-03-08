@@ -47,7 +47,7 @@ function _switch_editor(button, editor) {
 
 		// Display all editors
 		container.style.height = `${lastfocus.offsetHeight}px`;
-		container.classList.remove('hideAll-x');
+		container.classList.remove('maxcontent');
 		container.classList.remove('hideAll');
 
 		// Unfocus
@@ -61,7 +61,7 @@ function _switch_editor(button, editor) {
 		// Hide all editors
 		container.classList.add('hideAll');
 		setTimeout(() => {
-			container.classList.add('hideAll-x');
+			container.classList.add('maxcontent');
 		}, 400);
 	}
 }
