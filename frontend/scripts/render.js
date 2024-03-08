@@ -14,20 +14,17 @@ function renderdata_catelist(cates) {
 		let title = c.title;
 		let icon = c.icon;
 
-		let dom_li = document.createElement('li');
-		let dom_a = document.createElement('a');
-		dom_a.href = `javascript:render_c('${title}')`;
-		let dom_iconspan = document.createElement('span');
-		dom_iconspan.classList.add('icon');
-		dom_iconspan.style.background = icon;
-		let dom_textspan = document.createElement('span');
-		dom_textspan.classList.add('text');
-		dom_textspan.innerText = title;
+		let li = document.createElement('li');
+		li.innerHTML = `
+			<a>
+				<span class="icon" style="background: ${icon}"></span>
+				<span class="text">${title}</span>
+			</a>
+		`
+		$('span.icon', li).style.background = icon;
+		$('span.text', li).innerText = title;
 
-		dom_a.appendChild(dom_iconspan);
-		dom_a.appendChild(dom_textspan);
-		dom_li.appendChild(dom_a);
-		dom_ul.appendChild(dom_li);
+		dom_ul.appendChild(li);
 	})
 }
 
@@ -57,24 +54,23 @@ function renderdata_topiclist(topics) {
 
 	topics.forEach(t => {
 		let dom_tr = document.createElement('tr');
-		let dom_td = [1, 2, 3].map(_ => document.createElement('td'));
+		dom_tr.innerHTML = "<td></td> <td></td> <td></td>";
+		
+		let td = $$('td', dom_tr);
 
-		// Title (dom_td[0])
-		let dom_title = document.createElement('h6');
-		dom_title.classList.add('topic-link-title');
-		dom_title.innerText = t.title;
-		let dom_tags = document.createElement('div'); // TODO
-		dom_tags.classList.add('topic-link-tags');
+		// Title (td[0])
+		td[0].innerHTML = `
+			<h6 class="topic-link-title">${0}</h6>
+			<div class="topic-link-tags"></div>
+		`
+		$('h6', td[0]).innerText = t.title;
 
-		// Participater (dom_td[1])
+		// Participater (td[1])
 		// TODO
 
-		// Time (dom_td[2])
-		dom_td[2].innerText = t.time; // TODO
-
-		dom_td[0].appendChild(dom_title);
-		dom_td[0].appendChild(dom_tags);
-		dom_td.forEach(d => dom_tr.appendChild(d));
+		// Time (td[2])
+		td[2].innerText = t.time; // TODO
+		
 		dom_tbody.appendChild(dom_tr);
 	})
 }
@@ -97,17 +93,17 @@ function renderdata_posts(posts) {
 
 		var dom_post = document.createElement('div');
 		dom_post.classList.add('post');
-		var dom_poster = document.createElement('div');
-		dom_poster.classList.add('post-poster');
-		dom_poster.innerHTML = "<img class='poster photo'><span class='poster name'>";
-		dom_poster.querySelector('.poster.photo').src = post.poster_photo;
-		dom_poster.querySelector('.poster.name').innerText = post.poster;
-		var dom_info = document.createElement('div');
-		dom_info.classList.add('post-info');
-		dom_info.innerText = `${capitalize(post.type)} · ${post.time}`
+		dom_post.innerHTML = `
+			<div class="post-poster">
+				<img class="poster photo">
+				<span class="poster name"></span>
+				<div class="post-info"></div>
+			</div>
+		`
+		$('.poster.photo', dom_post).src = post.poster_photo;
+		$('.poster.name', dom_post).innerText = post.poster;
+		$('.post-info', dom_post).innerText = `${capitalize(post.type)} · ${post.time}`
 		
-		dom_poster.appendChild(dom_info);
-		dom_post.appendChild(dom_poster);
 		dom_post.appendChild(dom_content);
 		dom_posts.appendChild(dom_post);
 	})
