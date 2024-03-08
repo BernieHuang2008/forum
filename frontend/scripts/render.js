@@ -1,3 +1,7 @@
+function capitalize(s) {
+	return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function refresh_content(dom) {
 	$("#content").innerHTML = "";
 	$("#content").appendChild(dom);
@@ -98,7 +102,11 @@ function renderdata_posts(posts) {
 		dom_poster.innerHTML = "<img class='poster photo'><span class='poster name'>";
 		dom_poster.querySelector('.poster.photo').src = post.poster_photo;
 		dom_poster.querySelector('.poster.name').innerText = post.poster;
+		var dom_info = document.createElement('div');
+		dom_info.classList.add('post-info');
+		dom_info.innerText = `${capitalize(post.type)} · ${post.time}`
 		
+		dom_poster.appendChild(dom_info);
 		dom_post.appendChild(dom_poster);
 		dom_post.appendChild(dom_content);
 		dom_posts.appendChild(dom_post);

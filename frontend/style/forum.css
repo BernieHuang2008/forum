@@ -228,6 +228,12 @@ div.post {
 	user-select: none;
 }
 
+.post-info {
+	margin-left: auto;
+	order: 2;
+	color: #75726f;
+}
+
 .poster.photo {
 	height: 3rem;
 	width: 3rem;
