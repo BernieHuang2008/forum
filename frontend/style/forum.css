@@ -158,7 +158,7 @@ svg.icon {
 	padding: 0;
 }
 
-#sidebar ul>li>a {
+#sidebar ul>li>a {	
 	display: inline-flex;
 	width: 100%;
 	align-items: center;
@@ -169,6 +169,10 @@ svg.icon {
 	height: 2.1em;
 	padding: 0 1.25em;
 	align-items: center;
+}
+
+#sidebar ul>li>a:hover {
+	background: #313131;
 }
 
 #sidebar ul>li>a>span.icon {
@@ -205,6 +209,8 @@ svg.icon {
 	margin: 0;
 	font-weight: normal;
 	font-size: var(--font-up-1);
+	
+	cursor: pointer;
 }
 
 #topics .topic-list.time,

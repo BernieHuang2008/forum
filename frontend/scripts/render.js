@@ -21,6 +21,9 @@ function renderdata_catelist(cates) {
 				<span class="text">${title}</span>
 			</a>
 		`
+		$('a', li).onclick=function() {
+			render_category(c.id);
+		}
 		$('span.icon', li).style.background = icon;
 		$('span.text', li).innerText = title;
 
@@ -28,7 +31,7 @@ function renderdata_catelist(cates) {
 	})
 }
 
-function renderdata_topiclist(topics) {
+function renderdata_category(topics) {
 	var dom_content = $('#content');
 	dom_content.innerHTML = `
 		<div id="tpoics-controller">
@@ -55,7 +58,7 @@ function renderdata_topiclist(topics) {
 	topics.forEach(t => {
 		let dom_tr = document.createElement('tr');
 		dom_tr.innerHTML = "<td></td> <td></td> <td></td>";
-		
+
 		let td = $$('td', dom_tr);
 
 		// Title (td[0])
@@ -64,13 +67,16 @@ function renderdata_topiclist(topics) {
 			<div class="topic-link-tags"></div>
 		`
 		$('h6', td[0]).innerText = t.title;
+		$('h6', td[0]).onclick = function() {
+			render_posts(t.id);
+		};
 
 		// Participater (td[1])
 		// TODO
 
 		// Time (td[2])
 		td[2].innerText = t.time; // TODO
-		
+
 		dom_tbody.appendChild(dom_tr);
 	})
 }
@@ -103,15 +109,34 @@ function renderdata_posts(posts) {
 		$('.poster.photo', dom_post).src = post.poster_photo;
 		$('.poster.name', dom_post).innerText = post.poster;
 		$('.post-info', dom_post).innerText = `${capitalize(post.type)} · ${post.time}`
-		
+
 		dom_post.appendChild(dom_content);
 		dom_posts.appendChild(dom_post);
 	})
 
 	refresh_content(dom_posts);
-	
+
 	editor.render($('#content'));
 }
+
+function render_catelist() {
+	request_catelist().then(data => {
+		renderdata_catelist(data);
+	})
+}
+
+function render_category(id) {
+	request_cate(id).then(data => {
+		renderdata_category(data);
+	})
+}
+
+function render_posts(id) {
+	request_posts(id).then(data => {
+		renderdata_posts(data);
+	})
+}
+
 
 function _renderwidget_text(data) {
 	var dom_text = document.createElement('p');
