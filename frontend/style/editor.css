@@ -72,7 +72,8 @@
 	flex-direction: column;
 }
 
-.editor-element[name] {
+.editor-element[name],
+.editor-element.box {
 	display: block;
 
 	color: white;
@@ -113,10 +114,15 @@ textarea.editor-element {
 	resize: vertical;
 }
 
+.markdown-body {
+	background-color: transparent !important;
+}
+
 /* Advanced css */
 
 label.editor-element:has(+ input.editor-element),
-label.editor-element:has(+ textarea.editor-element) {
+label.editor-element:has(+ textarea.editor-element),
+label.editor-element:has(+ .editor-element.box) {
 	background-color: var(--editor-bg);
 
 	margin: 0;

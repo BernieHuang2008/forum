@@ -13,9 +13,10 @@ function _editor_render(container) {
 				<textarea class="editor-element" name="text1"></textarea>
 			</div>
 			<div class="editor" editor-name="markdown">
-			
 				<label class="editor-element">Markdown: </label>
 				<textarea class="editor-element" name="text1"></textarea>
+				<label class="editor-element">Preview</label>
+				<article class="editor-element box markdown-body">Markdown Preview</article>
 			</div>
 		</div>
 		<div id="editor-submit"></div>
@@ -31,6 +32,8 @@ function _editor_render(container) {
 	})
 
 	$('#editor-control>button').onclick();
+
+	$('.editor-element[name="text1"]', $('.editor[editor-name="markdown"]')).oninput = editor.previewmd;
 }
 
 
@@ -46,6 +49,7 @@ function _switch_editor(button, editor) {
 		let this_ele = $(`.editor-element[name="${name}"]`, editor);
 		if (this_ele) {
 			this_ele.value = ele.value;
+			if (this_ele.oninput) this_ele.oninput();
 		}
 	})
 
@@ -76,7 +80,22 @@ function _switch_editor(button, editor) {
 	}, 400);
 }
 
+function _editor_preview_md() {
+	var content = $('.editor[editor-name="markdown"]>[name="text1"]');
+	var preview = $('article.markdown-body');
+	const options = {
+		sanitize: true,
+		smartLists: true,
+		smartypants: true,
+		highlight: function(code) {
+			return hljs.highlightAuto(code).value;
+		}
+	};
+	preview.innerHTML = marked.parse(content.value, options);
+}
+
 
 const editor = {
 	render: _editor_render,
+	previewmd: _editor_preview_md,
 }

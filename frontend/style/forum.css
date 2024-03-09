@@ -19,6 +19,16 @@ a {
 	text-decoration: none;
 }
 
+hr {
+	--hr-side-color: transparent;
+	--hr-center-color: #909090;
+	border: 0;
+	border-radius: 1px;
+	height: 1px;
+	width: 100%;
+	background: linear-gradient(90deg, var(--hr-side-color), var(--hr-center-color), var(--hr-side-color));
+}
+
 button {
 	border: 1px solid rgba(0, 0, 0, 0);
 	padding: .5em .65em;
@@ -157,7 +167,7 @@ svg.icon {
 	padding: 0;
 }
 
-#sidebar ul>li>a {	
+#sidebar ul>li>a {
 	display: inline-flex;
 	width: 100%;
 	align-items: center;
@@ -208,7 +218,7 @@ svg.icon {
 	margin: 0;
 	font-weight: normal;
 	font-size: var(--font-up-1);
-	
+
 	cursor: pointer;
 }
 
