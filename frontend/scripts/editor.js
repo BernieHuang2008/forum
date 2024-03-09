@@ -14,7 +14,7 @@ function _editor_render(container) {
 			</div>
 			<div class="editor" editor-name="markdown">
 				<label class="editor-element">Markdown: </label>
-				<textarea class="editor-element" name="text1"></textarea>
+				<textarea class="editor-element language-markdown" name="text1"></textarea>
 				<label class="editor-element">Preview</label>
 				<article class="editor-element box markdown-body">Markdown Preview</article>
 			</div>
