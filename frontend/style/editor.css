@@ -17,14 +17,36 @@
 	float: right;
 }
 
+#editor-control>button {
+	padding: .5em .65em;
+	background: transparent;
+	z-index: 50;
+}
+
+#editor-switch {
+	display: inline;
+	position: relative;
+	z-index: 0;
+	overflow: hidden;
+	padding: .5px;
+
+	border-radius: 2em;
+	background: #3399ff66;
+	border: solid .5em #324353;
+	/* #3399ff29 */
+	color: transparent;
+
+	transition: all 0.3s ease-in-out;
+}
+
 #editor-container {
 	display: flex;
 	flex-direction: row;
 	clear: both;
-	
+
 	overflow: hidden;
 	scroll-behavior: smooth;
-	
+
 	transition: height .4s;
 }
 
@@ -93,7 +115,8 @@ textarea.editor-element {
 
 /* Advanced css */
 
-label.editor-element:has(+ input.editor-element) {
+label.editor-element:has(+ input.editor-element),
+label.editor-element:has(+ textarea.editor-element) {
 	background-color: var(--editor-bg);
 
 	margin: 0;

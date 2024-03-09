@@ -3,16 +3,18 @@ function _editor_render(container) {
 	<div id="editor">
 		<h1>Comment</h1>
 		<div id="editor-control">
+			<div id="editor-switch"></div>
 			<button>Text</button>
-			<button>Advance</button>
+			<button>Markdown</button>
 		</div>
 		<div id="editor-container">
 			<div class="editor" editor-name="text">
+				<label class="editor-element">Text: </label>
 				<textarea class="editor-element" name="text1"></textarea>
 			</div>
-			<div class="editor" editor-name="advance">
-				<label class="editor-element">Name :</label>
-				<input class="editor-element" name="title1">
+			<div class="editor" editor-name="markdown">
+			
+				<label class="editor-element">Markdown: </label>
 				<textarea class="editor-element" name="text1"></textarea>
 			</div>
 		</div>
@@ -23,7 +25,9 @@ function _editor_render(container) {
 	$$('#editor-control>button').forEach(button => {
 		var editor = $(`.editor[editor-name="${button.innerText.toLowerCase()}"]`);
 
-		button.onclick = _switch_editor(button, editor);
+		button.onclick = function() {
+			_switch_editor(button, editor)
+		};
 	})
 
 	$('#editor-control>button').onclick();
@@ -31,39 +35,45 @@ function _editor_render(container) {
 
 
 function _switch_editor(button, editor) {
-	return function() {
-		var lastfocus = $('.editor.focus') || $('.editor');
-		var container = $('#editor-container');
+	var lastfocus = $('.editor.focus') || $('.editor');
+	var container = $('#editor-container');
+	var switcher = $("#editor-switch");
 
-		// Sync Data
-		var last_data = lastfocus.querySelectorAll('.editor-element[name]');
-		last_data.forEach(ele => {
-			let name = ele.name;
-			let this_ele = editor.querySelector(`.editor-element[name="${name}"]`);
-			if (this_ele) {
-				this_ele.value = ele.value;
-			}
-		})
+	// Sync Data
+	var last_data = $$('.editor-element[name]', lastfocus);
+	last_data.forEach(ele => {
+		let name = ele.name;
+		let this_ele = $(`.editor-element[name="${name}"]`, editor);
+		if (this_ele) {
+			this_ele.value = ele.value;
+		}
+	})
 
-		// Display all editors
-		container.style.height = `${lastfocus.offsetHeight}px`;
-		container.classList.remove('maxcontent');
-		container.classList.remove('hideAll');
+	// Display all editors
+	container.style.height = `${lastfocus.offsetHeight}px`;
+	container.classList.remove('maxcontent');
+	container.classList.remove('hideAll');
 
-		// Unfocus
-		lastfocus.classList.remove('focus');
+	// Unfocus
+	lastfocus.classList.remove('focus');
 
-		// Focus on
-		editor.classList.add('focus');
-		editor.scrollIntoView();
-		container.style.height = `${editor.offsetHeight}px`;
+	// Focus on
+	editor.classList.add('focus');
+	editor.scrollIntoView();
+	container.style.height = `${editor.offsetHeight}px`;
 
-		// Hide all editors
-		container.classList.add('hideAll');
-		setTimeout(() => {
-			container.classList.add('maxcontent');
-		}, 400);
-	}
+	// Move switch
+	var width = button.offsetWidth;
+	var deltaWidth = width - switcher.offsetWidth;
+	switcher.style.paddingLeft = `calc(${width}px - 0.25em)`;
+	var left = button.offsetLeft - button.parentElement.offsetLeft - 3 + deltaWidth;
+	switcher.style.left = `calc(${left}px + 0.6em)`;
+
+	// Hide all editors
+	container.classList.add('hideAll');
+	setTimeout(() => {
+		container.classList.add('maxcontent');
+	}, 400);
 }
 
 
