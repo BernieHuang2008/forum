@@ -12,6 +12,7 @@
 #editor>h1 {
 	float: left;
 	font-size: 1.5rem;
+	user-select: none;
 }
 
 #editor-control {

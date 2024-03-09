@@ -33,9 +33,15 @@ function _editor_render(container) {
 	$$('#editor-control>button').forEach(button => {
 		var editor = $(`.editor[editor-name="${button.innerText.toLowerCase()}"]`);
 
-		button.onclick = function() {
+		button.onclick = function () {
 			_switch_editor(button, editor)
 		};
+
+		// Check authority
+		var tid = `t${window.curr.topicID}`;
+		if (window.authority[`${tid}\0editor-${button.innerText.toLowerCase()}`] !== true) {
+			button.style.display = "none";
+		}
 	})
 
 	$('#editor-control>button').onclick();
@@ -86,12 +92,6 @@ function _switch_editor(button, editor) {
 	setTimeout(() => {
 		container.classList.add('maxcontent');
 	}, 400);
-
-	// Submit button
-	var submit = $('#editor-submit>button');
-	if (window.authority[`t${window.curr.topicID}\0editor-${editor_name}`] !== true) {
-		submit.attributes.setNamedItem(document.createAttribute('disabled'));
-	}
 }
 
 function _editor_preview_md() {
