@@ -48,6 +48,7 @@ function _switch_editor(button, editor) {
 	var lastfocus = $('.editor.focus') || $('.editor');
 	var container = $('#editor-container');
 	var switcher = $("#editor-switch");
+	var editor_name = button.innerText.toLowerCase();
 
 	// Sync Data
 	var last_data = $$('.editor-element[name]', lastfocus);
@@ -85,6 +86,12 @@ function _switch_editor(button, editor) {
 	setTimeout(() => {
 		container.classList.add('maxcontent');
 	}, 400);
+
+	// Submit button
+	var submit = $('#editor-submit>button');
+	if (window.authority[`t${window.curr.topicID}\0editor-${editor_name}`] !== true) {
+		submit.attributes.setNamedItem(document.createAttribute('disabled'));
+	}
 }
 
 function _editor_preview_md() {

@@ -43,3 +43,11 @@ function request_sendpost(data) {
         return data;
     });
 }
+
+function request_authority() {
+    return fetch('http://localhost:9999/forum/authority')
+    .then(response => response.json())
+    .then(data => {
+        window.authority = data.authority;
+    });
+}

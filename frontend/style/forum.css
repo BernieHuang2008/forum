@@ -59,10 +59,9 @@ button.green:hover {
 	background-color: var(--green-light);
 }
 
-button.green:disabled {
+button:disabled {
+	opacity: .5;
 	cursor: not-allowed;
-	color: rgba(255, 255, 255, 0.5);
-	background-color: rgba(35,134,54,0.6);
 }
 
 table {
@@ -198,6 +197,10 @@ svg.icon {
 }
 
 #sidebar ul>li>a:hover {
+	background: #313131;
+}
+
+#sidebar ul>li.active>a {
 	background: #313131;
 }
 

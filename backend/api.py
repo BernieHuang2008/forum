@@ -80,10 +80,26 @@ def request_cates():
         ]
     )
 
+
 @app.route("/forum/newpost", methods=["POST"])
 def new_post():
     # TODO: create a new post in database
-    pass
+    return flask.jsonify({"status": "success"}), 200
+
+
+@app.route("/forum/authority")
+def get_authority():
+    # TODO: fetch user's authority from database
+    return flask.jsonify(
+        {
+            "authority": {
+                # <field>: c+id, t+id, p+id ----- category, topic, post
+                # \0 as separator
+                "t1\0new-topic": True, 
+                "<field>\0<name>": True
+            }
+        }
+    )
 
 
 if __name__ == "__main__":

@@ -15,13 +15,14 @@ function renderdata_catelist(cates) {
 		let icon = c.icon;
 
 		let li = document.createElement('li');
+		li.dataset.id = c.id;
 		li.innerHTML = `
 			<a>
 				<span class="icon" style="background: ${icon}"></span>
 				<span class="text">${title}</span>
 			</a>
 		`
-		$('a', li).onclick=function() {
+		$('a', li).onclick = function () {
 			render_category(c.id);
 		}
 		$('span.icon', li).style.background = icon;
@@ -31,12 +32,20 @@ function renderdata_catelist(cates) {
 	})
 }
 
-function renderdata_category(topics) {
+function renderdata_category(id, topics) {
+	window.curr.cateID = id;
+
+	$$('#categories li.active').forEach(li => li.classList.remove('active'));
+	$(`#categories li[data-id="${id}"]`).classList.add('active');
+
 	var dom_content = $('#content');
 	dom_content.innerHTML = `
 		<div id="tpoics-controller">
 			<div class="floatright">
-				<button><svg class="icon"><use href="#plus"></use></svg>New Topic</button>
+				<button id="btn-newtopic" disabled>
+					<svg class="icon"><use href="#plus"></use></svg>
+					New Topic
+				</button>
 			</div>
 		</div>
 		<div id="topics-list">
@@ -67,7 +76,7 @@ function renderdata_category(topics) {
 			<div class="topic-link-tags"></div>
 		`
 		$('h6', td[0]).innerText = t.title;
-		$('h6', td[0]).onclick = function() {
+		$('h6', td[0]).onclick = function () {
 			render_posts(t.id);
 		};
 
@@ -79,9 +88,21 @@ function renderdata_category(topics) {
 
 		dom_tbody.appendChild(dom_tr);
 	})
+
+	if (window.authority[`c${id}\0new-topic`] == true) {
+		var newtopic = $('#btn-newtopic');
+
+		newtopic.attributes.removeNamedItem('disabled');
+		newtopic.onclick = function () {
+			// TODO
+			ask("New Topic", ["Title"]);
+		}
+	}
 }
 
-function renderdata_posts(posts) {
+function renderdata_posts(id, posts) {
+	window.curr.topicID = id;
+
 	var dom_posts = document.createElement('div');
 	dom_posts.classList.add('posts-container');
 
@@ -127,13 +148,13 @@ function render_catelist() {
 
 function render_category(id) {
 	request_cate(id).then(data => {
-		renderdata_category(data);
+		renderdata_category(id, data);
 	})
 }
 
 function render_posts(id) {
 	request_posts(id).then(data => {
-		renderdata_posts(data);
+		renderdata_posts(id, data);
 	})
 }
 

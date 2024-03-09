@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Forum - OpenTeens</title>
-		<!-- style -->
-		<link rel="stylesheet" href="style/var.css" />
-		<link rel="stylesheet" href="style/forum.css" />
-		<link rel="stylesheet" href="style/editor.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css" />
-		<!-- script -->
-		<script src="scripts/sel.js"></script>
-		<script src="scripts/editor.js"></script>
-		<script src="scripts/render.js"></script>
-		<script src="scripts/api.js"></script>
-		<!-- lib -->
-		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-	</head>
-	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-		<symbol id="plus" viewBox="0 0 448 512">
-			<path
-				d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
-			</path>
-		</symbol>
-	</svg>
-	<body>
-		<div class="nav-wrapper">
-			<div id="nav" class="fixed"></div>
-		</div>
 
-		<div id="main-outlet-wrapper">
-			<div class="sidebar-wrapper fixed">
-				<div id="sidebar">
-					<div id="categories">
-						<h3>Categories</h3>
-						<ul></ul>
-					</div>
+<head>
+	<meta charset="utf-8">
+	<title>Forum - OpenTeens</title>
+	<!-- style -->
+	<link rel="stylesheet" href="style/var.css" />
+	<link rel="stylesheet" href="style/forum.css" />
+	<link rel="stylesheet" href="style/editor.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.5.1/github-markdown-dark.min.css" />
+	<!-- script -->
+	<script src="scripts/sel.js"></script>
+	<script src="scripts/editor.js"></script>
+	<script src="scripts/render.js"></script>
+	<script src="scripts/api.js"></script>
+	<!-- lib -->
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+</head>
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+	<symbol id="plus" viewBox="0 0 448 512">
+		<path
+			d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z">
+		</path>
+	</symbol>
+</svg>
+
+<body>
+	<div class="nav-wrapper">
+		<div id="nav" class="fixed"></div>
+	</div>
+
+	<div id="main-outlet-wrapper">
+		<div class="sidebar-wrapper fixed">
+			<div id="sidebar">
+				<div id="categories">
+					<h3>Categories</h3>
+					<ul></ul>
 				</div>
 			</div>
-
-			<div id="content"></div>
 		</div>
-	</body>
+
+		<div id="content"></div>
+	</div>
+</body>
+
 </html>
 
 
 <script>
+	window.curr = {}
+	window.authority = {}
+	request_authority();
+
 	render_catelist();
 	render_category(1);
 </script>
