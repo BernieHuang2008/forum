@@ -94,10 +94,11 @@ def get_authority():
         {
             "authority": {
                 # <field>: c+id, t+id, p+id ----- category, topic, post
-                # \0 as separator
+                # '\0' as separator
+                # `t/editor` default to True, other default to False
                 "<field>\0<name>": True,
                 "c1\0new-topic": True,
-                "t1\0editor-text": True
+                "t1\0editor-text": False
             }
         }
     )

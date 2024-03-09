@@ -39,12 +39,16 @@ function _editor_render(container) {
 
 		// Check authority
 		var tid = `t${window.curr.topicID}`;
-		if (window.authority[`${tid}\0editor-${button.innerText.toLowerCase()}`] !== true) {
+		if (window.authority[`${tid}\0editor-${button.innerText.toLowerCase()}`] === false) {
 			button.style.display = "none";
+		}
+		else {
+			button.classList.add('allowed');
 		}
 	})
 
-	$('#editor-control>button').onclick();
+	// Default focus on the first editor
+	$('#editor-control>button.allowed').onclick();
 
 	$('.editor-element[name="text1"]', $('.editor[editor-name="markdown"]')).oninput = editor.previewmd;
 }
