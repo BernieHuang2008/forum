@@ -118,6 +118,10 @@ textarea.editor-element {
 	background-color: transparent !important;
 }
 
+.markdown-body pre {
+	padding: 0;
+}
+
 /* Advanced css */
 
 label.editor-element:has(+ input.editor-element),

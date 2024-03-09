@@ -86,12 +86,10 @@ function _editor_preview_md() {
 	const options = {
 		sanitize: true,
 		smartLists: true,
-		smartypants: true,
-		highlight: function(code) {
-			return hljs.highlightAuto(code).value;
-		}
+		smartypants: true
 	};
 	preview.innerHTML = marked.parse(content.value, options);
+	hljs.highlightAll();
 }
 
 
