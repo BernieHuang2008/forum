@@ -156,6 +156,9 @@ html {
 	--shadow-focus-danger: 0 0 6px 0 var(--danger);
 	--float-kit-arrow-stroke-color: var(--primary-low);
 	--float-kit-arrow-fill-color: var(--secondary);
+
+	--green: #238636;
+	--green-light: #2ea043;
 }
 
 html {

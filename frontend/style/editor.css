@@ -48,7 +48,7 @@
 	overflow: hidden;
 	scroll-behavior: smooth;
 
-	transition: height .4s;
+	transition: height .4s ease-in-out;
 }
 
 #editor-container.maxcontent {
@@ -58,6 +58,10 @@
 #editor-container.hideAll>.editor {
 	height: 0;
 	overflow: hidden;
+}
+
+#editor-submit {
+	direction: rtl;
 }
 
 .editor.focus {

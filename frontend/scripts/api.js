@@ -29,3 +29,17 @@ function request_catelist() {
             return data;
         });
 }
+
+function request_sendpost(data) {
+    return fetch('http://localhost:9999/forum/newpost', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        return data;
+    });
+}

@@ -7,11 +7,15 @@ function _editor_render(container) {
 			<button>Text</button>
 			<button>Markdown</button>
 		</div>
+
 		<div id="editor-container">
+			<!-- Editor: Text -->
 			<div class="editor" editor-name="text">
 				<label class="editor-element">Text: </label>
 				<textarea class="editor-element" name="text1"></textarea>
 			</div>
+
+			<!-- Editor: Markdown -->
 			<div class="editor" editor-name="markdown">
 				<label class="editor-element">Markdown: </label>
 				<textarea class="editor-element" name="text1"></textarea>
@@ -19,7 +23,10 @@ function _editor_render(container) {
 				<article class="editor-element box markdown-body">Markdown Preview</article>
 			</div>
 		</div>
-		<div id="editor-submit"></div>
+
+		<div id="editor-submit">
+			<button onclick="editor.submit()" class="green">Submit</button>
+		</div>
 	</div>
 	`
 
@@ -92,8 +99,30 @@ function _editor_preview_md() {
 	hljs.highlightAll();
 }
 
+function _editor_submit() {
+	var editor = $('.editor.focus');
+	var data = {};
+
+	$$('.editor-element[name]', editor).forEach(ele => {
+		let field_name = ele.name;
+		let field_value = ele.value;
+		data[field_name] = field_value;
+	})
+
+	request_sendpost({
+		type: editor.attributes['editor-name'].value,
+		data: data
+	}).then(resp => {
+		if (resp.status == "success") {
+			alert("Success");
+		} else {
+			alert("Failed");
+		}
+	})
+}
 
 const editor = {
 	render: _editor_render,
 	previewmd: _editor_preview_md,
+	submit: _editor_submit,
 }

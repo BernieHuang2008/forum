@@ -48,6 +48,23 @@ button {
 	user-select: none;
 }
 
+button.green {
+	border-radius: 6px;
+	padding: 6px 12px;
+	margin: 10px;
+	background-color: var(--green);
+}
+
+button.green:hover {
+	background-color: var(--green-light);
+}
+
+button.green:disabled {
+	cursor: not-allowed;
+	color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(35,134,54,0.6);
+}
+
 table {
 	width: 100%;
 	border-collapse: collapse;

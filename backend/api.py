@@ -80,6 +80,11 @@ def request_cates():
         ]
     )
 
+@app.route("/forum/newpost", methods=["POST"])
+def new_post():
+    # TODO: create a new post in database
+    pass
+
 
 if __name__ == "__main__":
     CORS(app)
